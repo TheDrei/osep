@@ -334,7 +334,7 @@
 						@endif
 					</table>
 
-
+					<!-- SDG Addressed -->
 					@if( Session::has("sdg_addressed_version") )
 						<strong>Sustainable Development Goal (SDG) Addressed:</strong>
 						@foreach (Session::get("sdg_addressed_version") as $index => $sdg_addressed)
@@ -345,6 +345,7 @@
 							@endif
 						@endforeach
 				    @endif
+					<!-- End SDG Addressed -->
 				</div>
 			</div>
 			<br/>

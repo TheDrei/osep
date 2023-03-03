@@ -1976,10 +1976,12 @@ class ProposalsController extends Controller
             if(!is_null($lead_implementing_agency)) Session::flash('lead_implementing_agency', $lead_implementing_agency);
 
             //version
-            $sdg_addressed_version = DB::table('proposal_sdg')
-                                          ->where('proposal_idproposal', $proposal_id)
-                                          ->orderBy('created_at', 'ASC')
-                                          ->get();
+            // SDG Addressed 
+            // $sdg_addressed_version = DB::table('proposal_sdg')
+            //                               ->where('proposal_idproposal', $proposal_id)
+            //                               ->orderBy('created_at', 'ASC')
+            //                               ->get();
+            // End SDG Addressed
             $executive_summary_version = DB::table('executive_summary')
                                           ->where('proposal_idproposal', $proposal_id)
                                           ->orderBy('created_at', 'ASC')
@@ -2102,6 +2104,7 @@ class ProposalsController extends Controller
                                           ->where('proposal_idproposal', $proposal_id)
                                           ->orderBy('created_at', 'ASC')
                                           ->get();
+            // SDG Addressed
             if(!is_null($sdg_addressed_version)) Session::flash('sdg_addressed_version', $sdg_addressed_version);
             if(!is_null($executive_summary_version)) Session::flash('executive_summary_version', $executive_summary_version);
             if(!is_null($description_version)) Session::flash('description_version', $description_version);
