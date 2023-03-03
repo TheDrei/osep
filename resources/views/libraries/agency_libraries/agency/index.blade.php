@@ -1,0 +1,33 @@
+<h4>Agency</h4>
+<div class="content">
+  <div class="row">
+    <div class="col">
+      <button id="add_new_agency" type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#agency_modal">
+        Add Agency
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row py-3">
+  <div class="col">
+    <table id="agency_table" class="table table-bordered table-striped" style="width: 100%;">
+      <thead>
+        <tr>
+          {{-- <th width="1%"></th> --}}
+          <th>Agency</th>
+          <th>Acronym</th>
+          <th>Barangay</th>
+          <th>Municipality</th>
+          <th>Province</th>
+          <th>Tel No.</th>
+          <th>Email</th>
+          <th>Website</th>
+          <th>Is Verified</th>
+          <th>Is Active</th>
+          <th width="110px"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
