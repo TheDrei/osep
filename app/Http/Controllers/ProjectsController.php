@@ -85,7 +85,7 @@ class ProjectsController extends Controller
          // ];   
          $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);   
          // dd($dpmis_auth);  
-         $dpmis_auth_result = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/dpmisoauth', [            
+         $dpmis_auth_result = $dpmis_auth->post('https://http://202.90.141.23//dpmisoauth', [            
             'form_params' => [
             'headers' => [
                'Content-Type' => 'application/json',
@@ -99,7 +99,7 @@ class ProjectsController extends Controller
          ]);         
                 
          $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']); 
-         $forward_project_status = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/statuses', [
+         $forward_project_status = $dpmis_auth->post('https://http://202.90.141.23//statuses', [
             'headers' => [
                'Authorization' => ' Bearer '.$dpmis_access_token,
                'Content-Type' => 'application/json',

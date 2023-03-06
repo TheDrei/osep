@@ -890,7 +890,7 @@ class ProposalsController extends Controller
                 try {
                     $now = Carbon::now();
                     $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                    $dpmis_auth_result = $dpmis_auth->post('https://localhost/dpmisoauth', [
+                    $dpmis_auth_result = $dpmis_auth->post('http://202.90.141.23/dpmisoauth', [
                       'form_params' => [
                         'headers' => [
                           'Content-Type' => 'application/json',
@@ -904,7 +904,7 @@ class ProposalsController extends Controller
                     ]);
                     $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']);
 
-                    $dpmis_update_status = $dpmis_auth->post('https://localhost/statuses', [
+                    $dpmis_update_status = $dpmis_auth->post('http://202.90.141.23/statuses', [
 
                       'headers' => [
                         'Authorization' => ' Bearer '.$dpmis_access_token,
@@ -3329,7 +3329,7 @@ class ProposalsController extends Controller
                 try {
                     $now = Carbon::now();
                     $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                    $dpmis_auth_result = $dpmis_auth->post('https://localhost/dpmisoauth', [
+                    $dpmis_auth_result = $dpmis_auth->post('http://202.90.141.23/api/public/dpmisoauth', [
                       'form_params' => [
                         'headers' => [
                           'Content-Type' => 'application/json',
@@ -3343,7 +3343,7 @@ class ProposalsController extends Controller
                     ]);
                     $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']);
 
-                    $dpmis_update_status = $dpmis_auth->post('https://localhost/statuses', [
+                    $dpmis_update_status = $dpmis_auth->post('http://202.90.141.23/api/public/dpmisoauth', [
 
                       'headers' => [
                         'Authorization' => ' Bearer '.$dpmis_access_token,
@@ -3363,22 +3363,24 @@ class ProposalsController extends Controller
 
                       ]
                     ]); 
-                        //forward_to_palihan
-                        if($new_status->idlib_proposal_status == 15 ) {
-                        if($this->forward_proposal_to_palihan($request) == 1) {
-                            Session::flash('success', 'Proposal has been transferred to Palihan successfully');
-                            return Response::json([
-                                'view' => View::make('partials/flash-messages')->render(),
-                                'status'=>'1'
-                            ]);
-                        } else {
-                            Session::flash('error', 'Proposal has not been transferred to Palihan');
-                            return Response::json([
-                                'view' => View::make('partials/flash-messages')->render(),
-                                'status'=>'0'
-                            ]);
-                        }
-                       }
+
+                    // dd($dpmis_update_status);
+                      //   //forward_to_palihan
+                      //   if($new_status->idlib_proposal_status == 15 ) {
+                      //   if($this->forward_proposal_to_palihan($request) == 1) {
+                      //       Session::flash('success', 'Proposal has been transferred to Palihan successfully');
+                      //       return Response::json([
+                      //           'view' => View::make('partials/flash-messages')->render(),
+                      //           'status'=>'1'
+                      //       ]);
+                      //   } else {
+                      //       Session::flash('error', 'Proposal has not been transferred to Palihan');
+                      //       return Response::json([
+                      //           'view' => View::make('partials/flash-messages')->render(),
+                      //           'status'=>'0'
+                      //       ]);
+                      //   }
+                      //  }
 
                      
                    
@@ -3447,7 +3449,7 @@ class ProposalsController extends Controller
       //                                   )
       //                                   ->first();
       //       // $dpmis_auth_export = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-      //       // $dpmis_auth_result_export = $dpmis_auth_export->post('https://localhost/dpmisoauth', [
+      //       // $dpmis_auth_result_export = $dpmis_auth_export->post('http://202.90.141.23/dpmisoauth', [
       //       //   'form_params' => [
       //       //     'headers' => [
       //       //       'Content-Type' => 'application/json',
@@ -3460,7 +3462,7 @@ class ProposalsController extends Controller
       //       //   ]
       //       // ]);
       //       // $dpmis_access_token_export = (json_decode($dpmis_auth_result_export->getBody(), true)['access_token']);
-      //       // $dpmis_update_status_export = $dpmis_auth_export->post('https://localhost/statuses', [
+      //       // $dpmis_update_status_export = $dpmis_auth_export->post('http://202.90.141.23/statuses', [
       //       //   'headers' => [
       //       //     'Authorization' => ' Bearer '.$dpmis_access_token_export,
       //       //     'Content-Type' => 'application/json',
@@ -3653,7 +3655,7 @@ class ProposalsController extends Controller
                       //   set_time_limit(0);
                       //   $now = Carbon::now();
                       //   $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                      //   $dpmis_auth_result = $dpmis_auth->post('https://localhost/dpmisoauth', 
+                      //   $dpmis_auth_result = $dpmis_auth->post('http://202.90.141.23/dpmisoauth', 
                       //   [
                       //       'form_params' => [
                       //           'headers' => [
@@ -3668,7 +3670,7 @@ class ProposalsController extends Controller
                       //   ]);
                       //   $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']);
                       //  // dd($pm_id);
-                      //   $dpmis_user_proposal_assigned = $dpmis_auth->put('https://localhost/v1/projectManagersAssignment/'.$proposal_code,
+                      //   $dpmis_user_proposal_assigned = $dpmis_auth->put('http://202.90.141.23/v1/projectManagersAssignment/'.$proposal_code,
                       //   [
 
                       //       'headers' => [
@@ -3768,7 +3770,7 @@ class ProposalsController extends Controller
                                 )
                                 ->first();
                 $dpmis_auth_forward = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                $dpmis_auth_result_forward = $dpmis_auth_forward->post('https://localhost/dpmisoauth', [
+                $dpmis_auth_result_forward = $dpmis_auth_forward->post('http://202.90.141.23/dpmisoauth', [
                   'form_params' => [
                     'headers' => [
                       'Content-Type' => 'application/json',
@@ -3782,7 +3784,7 @@ class ProposalsController extends Controller
                 ]);
                 $dpmis_access_token_forward = (json_decode($dpmis_auth_result_forward->getBody(), true)['access_token']);
 
-                $dpmis_update_status_forward = $dpmis_auth_forward->post('https://localhost/statuses', [
+                $dpmis_update_status_forward = $dpmis_auth_forward->post('http://202.90.141.23/statuses', [
                   'headers' => [
                     'Authorization' => ' Bearer '.$dpmis_access_token_forward,
                     'Content-Type' => 'application/json',

@@ -531,7 +531,7 @@ class ProposalsCommentController extends Controller
             try {
                 $now = Carbon::now();
                 $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                $dpmis_auth_result = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/dpmisoauth', [
+                $dpmis_auth_result = $dpmis_auth->post('http://202.90.141.23/dpmisoauth', [
                   'form_params' => [
                     'headers' => [
                       'Content-Type' => 'application/json',
@@ -545,7 +545,7 @@ class ProposalsCommentController extends Controller
                 ]);
                 $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']);
 
-                $dpmis_update_status = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/statuses', [
+                $dpmis_update_status = $dpmis_auth->post('http://202.90.141.23/statuses', [
 
                   'headers' => [
                     'Authorization' => ' Bearer '.$dpmis_access_token,
@@ -564,6 +564,19 @@ class ProposalsCommentController extends Controller
                     'created_by' => ((!is_null(Auth::user()->first_name) && !is_null(Auth::user()->last_name)) ? Auth::user()->first_name.' '.Auth::user()->last_name : 'Pamela Anne Tandang')
                   ]
                 ]);
+
+                // {
+                //     "project_id" : "2023-02-B2-SPAANR-12438",
+                //     "status_id" : "pcaarrd",
+                //     "status_name" : "pcaarrd2020",
+                //     "status_type" : "client_credentials",
+                //     "remarks" : "client_credentials",
+                //     "date_created" : "client_credentials",
+                //     "evaluation_level" : "client_credentials",
+                //     "is_closed" : "client_credentials",
+                //     "created_by" : "client_credentials"
+                // }  
+   
 
               } catch (GuzzleHttp\Exception\ClientException $e) {
                 

@@ -143,7 +143,7 @@ class UsersController extends Controller
                         set_time_limit(0);
                         $now = Carbon::now();
                         $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                        $dpmis_auth_result = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/dpmisoauth', [
+                        $dpmis_auth_result = $dpmis_auth->post('https://202.90.141.23/dpmisoauth', [
                           'form_params' => [
                             'headers' => [
                               'Content-Type' => 'application/json',
@@ -177,7 +177,7 @@ class UsersController extends Controller
                             'pm_educations' => []
                         ];
 
-                        $dpmis_forward_pmt = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/v1/projectmanagers', [
+                        $dpmis_forward_pmt = $dpmis_auth->post('https://202.90.141.23/v1/projectmanagers', [
                             'headers' => [
                                 'Authorization' => ' Bearer '.$dpmis_access_token,
                                 'Content-Type' => 'application/json',
@@ -314,7 +314,7 @@ class UsersController extends Controller
         //             set_time_limit(0);
         //             $now = Carbon::now();
         //             $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-        //             $dpmis_auth_result = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/dpmisoauth', [
+        //             $dpmis_auth_result = $dpmis_auth->post('https://202.90.141.23/dpmisoauth', [
         //               'form_params' => [
         //                 'headers' => [
         //                   'Content-Type' => 'application/json',
@@ -348,7 +348,7 @@ class UsersController extends Controller
         //                 'pm_educations' => []
         //             ];
                     
-        //             $dpmis_forward_pmt = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/v1/projectmanagers', [
+        //             $dpmis_forward_pmt = $dpmis_auth->post('https://202.90.141.23/v1/projectmanagers', [
         //                 'headers' => [
         //                     'Authorization' => ' Bearer '.$dpmis_access_token,
         //                     'Content-Type' => 'application/json',
@@ -417,7 +417,7 @@ class UsersController extends Controller
                 set_time_limit(0);
                 $now = Carbon::now();
                 $dpmis_auth = new Client(['proxy' => 'tcp://192.168.0.9:3128']);
-                $dpmis_auth_result = $dpmis_auth->post('https://api.dpmis.dost.gov.ph/dpmisoauth', 
+                $dpmis_auth_result = $dpmis_auth->post('https://202.90.141.23/dpmisoauth', 
                 [
                     'form_params' => [
                         'headers' => [
@@ -432,7 +432,7 @@ class UsersController extends Controller
                 ]);
                 $dpmis_access_token = (json_decode($dpmis_auth_result->getBody(), true)['access_token']);
 
-                $dpmis_user_proposal_assigned = $dpmis_auth->put('https://api.dpmis.dost.gov.ph/v1/projectManagersAssignment/'.$user_proposal->proposal_code,
+                $dpmis_user_proposal_assigned = $dpmis_auth->put('https://202.90.141.23/v1/projectManagersAssignment/'.$user_proposal->proposal_code,
                 [
                     'headers' => [
                         'Authorization' => ' Bearer '.$dpmis_access_token,
